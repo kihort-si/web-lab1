@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang=ru>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="если честно, я сам не знаю, зачем этот сайт, мне такой вариант попался">
+    <link rel="stylesheet" href="style.css">
+    <title>Веб-прога - Лаба 1</title>
+</head>
+<body>
+    <header>
+        <span>Васильев Никита Алексеевич</span>
+        <span>P3208</span>
+        <span>Вариант №49</span>
+    </header>
+    <main>
+        <form method="GET">
+            <table class="inputTable">
+                <thead>
+                    <tr>
+                        <th colspan="3">Введите данные для проверки</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <span>Укажите X:</span>
+                            <div class="xButtons">
+                                <input value="-2" id="x_button_0" type="button">
+                                <input value="-1.5" id="x_button_1" type="button">
+                                <input value="-1" id="x_button_2" type="button">
+                                <input value="-0.5" id="x_button_3" type="button">
+                                <input value="0" id="x_button_4" type="button">
+                                <input value="0.5" id="x_button_5" type="button">
+                                <input value="1" id="x_button_6" type="button">
+                                <input value="1.5" id="x_button_7" type="button">
+                                <input value="2" id="x_button_8" type="button">
+                            </div>
+                            <span class="errorMessage" id="xError">a</span>
+                        </td>
+                        <td>
+                            <span>Укажите Y:</span>
+                            <div class="yText">
+                                <input id="yInput" type="text" placeholder="от -5 до 5">
+                            </div>
+                            <span class="errorMessage" id="yError">w</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Укажите R:</span>
+                            <div class="rButtons">
+                                <input value="1" id="r_button_0" type="button">
+                                <input value="1.5" id="r_button_1" type="button">
+                                <input value="2" id="r_button_2" type="button">
+                                <input value="2.5" id="r_button_3" type="button">
+                                <input value="3" id="r_button_4" type="button">
+                            </div>
+                            <span class="errorMessage" id="rError">f</span>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        <button id="submitButton" type="submit" onclick="validate()">
+            Проверить
+        </button>
+        <table id="result">
+            <thead>
+                <tr>
+                    <th>X</th>
+                    <th>Y</th>
+                    <th>R</th>
+                    <th>Текущее время</th>
+                    <th>Время выполнения</th>
+                    <th>Результат</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </main>
+    <footer>
+        <div>
+            <span>Copyright. All rights reserved. 2024</span>
+            <a href=""><img id="githubLogo" src="github.svg" alt="Исходный код на GitHub"></a>
+        </div>
+        <hr>
+    </footer>
+<script src="index.js"></script>
+</body>
+</html>
