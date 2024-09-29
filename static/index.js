@@ -50,13 +50,60 @@ async function validate() {
                     rowX.textContent = x;
                     rowY.textContent = y;
                     rowR.textContent = r;
-                    rowTime.textContent = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+                    rowTime.textContent = date.getHours() + ":" + date.getMinutes().toString().padStart(2, '0') + ":" + date.getSeconds().toString().padStart(2, '0');
                     rowDuration.textContent = timeTaken + " мс";
                     rowResult.textContent = response.hit;
                 }
             })
 
         resultTable.style.opacity = '1';
+        saveTableData();
+    }
+}
+
+function saveTableData() {
+    const rows = [];
+    const tableRows = resultTableBody.querySelectorAll('tr');
+
+    tableRows.forEach(row => {
+        const cells = row.querySelectorAll('td');
+        const rowData = {
+            x: cells[0].textContent,
+            y: cells[1].textContent,
+            r: cells[2].textContent,
+            time: cells[3].textContent,
+            duration: cells[4].textContent,
+            result: cells[5].textContent
+        };
+        rows.push(rowData);
+    });
+
+    localStorage.setItem('tableData', JSON.stringify(rows));
+}
+
+function restoreTableData() {
+    const savedData = localStorage.getItem('tableData');
+    if (savedData) {
+        const rows = JSON.parse(savedData);
+        resultTable.style.opacity = '1';
+
+        rows.forEach(rowData => {
+            const newRow = resultTableBody.insertRow(-1);
+
+            const rowX = newRow.insertCell(0);
+            const rowY = newRow.insertCell(1);
+            const rowR = newRow.insertCell(2);
+            const rowTime = newRow.insertCell(3);
+            const rowDuration = newRow.insertCell(4);
+            const rowResult = newRow.insertCell(5);
+
+            rowX.textContent = rowData.x;
+            rowY.textContent = rowData.y;
+            rowR.textContent = rowData.r;
+            rowTime.textContent = rowData.time;
+            rowDuration.textContent = rowData.duration;
+            rowResult.textContent = rowData.result;
+        });
     }
 }
 
@@ -126,3 +173,5 @@ function updateValues() {
     x = document.querySelector('.xButtons input.active')?.value;
     r = document.querySelector('.rButtons input.active')?.value;
 }
+
+document.addEventListener('DOMContentLoaded', restoreTableData);
