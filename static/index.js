@@ -2,6 +2,7 @@
 
 let x, y, r;
 const resultTable = document.getElementById('result');
+const resultTableBody = document.querySelector("#result tbody");
 
 async function validate() {
     let success = true;
@@ -35,7 +36,7 @@ async function validate() {
                     alert('Ответ от сервера не получен');
                     console.log(response.error);
                 } else {
-                    const newRow = resultTable.insertRow(-1);
+                    const newRow = resultTableBody.insertRow(-1);
 
                     const rowX = newRow.insertCell(0);
                     const rowY = newRow.insertCell(1);
@@ -54,6 +55,8 @@ async function validate() {
                     rowResult.textContent = response.hit;
                 }
             })
+
+        resultTable.style.opacity = '1';
     }
 }
 

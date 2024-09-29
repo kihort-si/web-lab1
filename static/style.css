@@ -107,9 +107,10 @@ input[type="text"] {
     transition: opacity 0.4s ease;
 }
 
-#result>tbody th {
+#result>tbody td {
     border: 1px solid #000035;
     font-weight: normal;
+    text-align: center;
 }
 
 #result thead tr th  {
@@ -118,10 +119,15 @@ input[type="text"] {
     color: white;
 }
 
+#result>thead>tr>th:nth-child(1), #result>thead>tr>th:nth-child(2), #result>thead>tr>th:nth-child(3) {
+    width: 4rem;
+}
+
 #result {
     border: 2px solid #000035;
-    opacity: 1;
+    opacity: 0;
     margin-top: 2rem;
+    transition: opacity 0.4s ease;
 }
 
 footer {
