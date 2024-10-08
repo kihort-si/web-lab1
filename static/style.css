@@ -107,6 +107,16 @@ input[type="text"] {
     transition: opacity 0.4s ease;
 }
 
+.graphContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.graph {
+    max-height: 50vh;
+    width: 100%;
+}
+
 #result>tbody td {
     border: 1px solid #000035;
     font-weight: normal;

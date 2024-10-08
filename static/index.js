@@ -58,6 +58,8 @@ async function validate() {
 
         resultTable.style.opacity = '1';
         saveTableData();
+        updateSVGDot();
+        updateSVGRadius();
     }
 }
 
@@ -78,11 +80,11 @@ function saveTableData() {
         rows.push(rowData);
     });
 
-    localStorage.setItem('tableData', JSON.stringify(rows));
+    sessionStorage.setItem('tableData', JSON.stringify(rows));
 }
 
 function restoreTableData() {
-    const savedData = localStorage.getItem('tableData');
+    const savedData = sessionStorage.getItem('tableData');
     if (savedData) {
         const rows = JSON.parse(savedData);
         resultTable.style.opacity = '1';
@@ -116,7 +118,7 @@ function validateX() {
 }
 
 function validateY() {
-    if (y === undefined || y === null) {
+    if (y === undefined || y === null || y === "") {
         showErrorMessage('Введите Y', 'y');
         return false;
     } else if (isNaN(parseFloat(y)) || !isFinite(y)) {
@@ -145,6 +147,23 @@ function showErrorMessage(text, coordinate) {
 function hideErrorMessage(coordinate) {
     let textPlace = document.getElementById(coordinate + 'Error');
     textPlace.style.opacity = '0';
+}
+
+function updateSVGRadius() {
+    document.getElementById('radiusX').textContent = r;
+    document.getElementById('radiusY').textContent = r;
+    document.getElementById('-radiusX').textContent = -r;
+    document.getElementById('-radiusY').textContent = -r;
+    document.getElementById('radius2X').textContent = r / 2;
+    document.getElementById('radius2Y').textContent = r / 2;
+    document.getElementById('-radius2X').textContent = -r / 2;
+    document.getElementById('-radius2Y').textContent = -r / 2;
+}
+
+function updateSVGDot() {
+    const dot = document.getElementById('dot');
+    dot.setAttribute("cx", ((x / r) * 154) + 256);
+    dot.setAttribute("cy", (256 - (y / r) * 154));
 }
 
 function setupButtons(className) {
